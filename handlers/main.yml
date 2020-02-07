@@ -1,0 +1,16 @@
+---
+- name: Stop heartbeat
+  service:
+    name: heartbeat
+    state: stopped
+
+- name: Start heartbeat
+  service:
+    name: heartbeat
+    state: started
+
+- name: Restart heartbeat
+  service:
+    name: heartbeat
+    state: restarted
+

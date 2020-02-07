@@ -1,0 +1,4 @@
+---
+elasticsearch_version: "6.x"
+elasic_repo: "deb https://artifacts.elastic.co/packages"
+beat_version: "latest"
