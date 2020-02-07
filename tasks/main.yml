@@ -1,0 +1,38 @@
+---
+- name: Add Elastic GPG Key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+- name: Add Elastic {{ elasticsearch_version }} repository
+  apt_repository:
+    repo: "{{ elasic_repo }}/{{ elasticsearch_version }}/apt stable main"
+    state: present
+    update_cache: true
+- name: Stop heartbeat
+  service:
+    name: heartbeat
+    state: stoped
+- name: Install heartbeat
+  apt:
+    name: heartbeat
+    state: "{{ beat_version }}"
+  notify:
+    - Stop heartbeat
+- name: Create heartbeat configs directory
+  file:
+    path: '/etc/heartbeat/monitors.d'
+    state: directory
+    mode: 0755
+- name: Add filebeat configuration file
+  template:
+    src: 'etc/heartbeat/heartbeat.yml.tpl'
+    dest: '/etc/heartbeat/heartbeat.yml'
+- name: Add configuration files
+  template:
+    src: 'etc/heartbeat/monitors.d/{{ item }}.tpl'
+    dest: '/etc/heartbeat/monitors.d/{{ item }}'
+  loop:
+    - checker-http.yml
+    - checker-ssh.yml
+  notify:
+    - Restart filebeat
