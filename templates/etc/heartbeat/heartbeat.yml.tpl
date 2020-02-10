@@ -25,8 +25,8 @@ setup.dashboards.index: "heartbeat-*"
 output.elasticsearch:
   hosts: ["{{ elk_url }}:9200"]
   index: "heartbeat-%{+yyyy.MM.dd}"
-  username: "{{ elk_username }}"
-  password: "{{ elk_password }}"
+  username: "{{ creds[0].username }}"
+  password: "{{ creds[0].password }}"
 
 #================================ Processors =====================================
 processors:
