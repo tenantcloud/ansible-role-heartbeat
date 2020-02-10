@@ -11,7 +11,8 @@
 - name: Stop heartbeat
   service:
     name: heartbeat
-    state: stoped
+    state: stopped
+  ignore_errors: true
 - name: Install heartbeat
   apt:
     name: heartbeat
@@ -23,7 +24,7 @@
     path: '/etc/heartbeat/monitors.d'
     state: directory
     mode: 0755
-- name: Add filebeat configuration file
+- name: Add heartbeat configuration file
   template:
     src: 'etc/heartbeat/heartbeat.yml.tpl'
     dest: '/etc/heartbeat/heartbeat.yml'
@@ -35,4 +36,4 @@
     - checker-http.yml
     - checker-ssh.yml
   notify:
-    - Restart filebeat
+    - Restart heartbeat
