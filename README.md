@@ -35,6 +35,10 @@ Example Playbook
         - {ip: "1.2.3.4", port: "60002"}
         - {ip: "8.8.8.8", port: "5050"}
         - {ip: "8.8.8.8", port: "8080"}
+      creds:
+        - {username: "user1",  password: "password1"}
+        - {username: "user2",  password: "password2"}
+      elk_url: "194.44.100.100"
     become: yes
     roles:
       - tenantcloud.ansible_role_heartbeat
