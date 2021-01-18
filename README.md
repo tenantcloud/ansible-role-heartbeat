@@ -1,4 +1,7 @@
-tenantcloud.ansible_role_heartbeat
+
+![Lint Ansible Roles](https://github.com/tenantcloud/ansible-role-heartbeat/workflows/Lint%20Ansible%20Roles/badge.svg?branch-master)
+
+tenantcloud.heartbeat
 =========
 
 Ansible role for install and setup heartbeat. This role include in default terraform scenario for auto-deploy new server.
