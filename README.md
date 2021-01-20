@@ -44,7 +44,7 @@ Example Playbook
       elk_url: "194.44.100.100"
     become: yes
     roles:
-      - tenantcloud.ansible_role_heartbeat
+      - tenantcloud.heartbeat
 ```
 
 License
